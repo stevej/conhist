@@ -1,7 +1,9 @@
 #!/usr/bin/ruby
 #
-# Given a stream of numbers, print out a histogram of 
-#
+# Given a stream of numbers, print out a numerical and graphical histogram.
+# Idea and some parts borrowed from the neat conplot tool.
+# Available under the Apache 2.0 License
+# Copyright Steve Jenson <stevej@pobox.com>
 
 module ConHist
   # stolen from the stdlib docs.
@@ -52,13 +54,13 @@ module ConHist
       end
     end
 
-    #  sturges formula for determine optimal number of buckets.
+    #  sturges formula for determining the optimal number of buckets.
     def sturges(n)
       (Math.log(n) + 1).ceil
     end
 
+    # puts each item in the sample into the correct bucket.
     def collate(sample)
-      # determine the bucket for each item.
       sample.each do |item|
         @bins.each do |bin_id|
           if item <= bin_id
@@ -77,7 +79,7 @@ module ConHist
 
     def print_console
       puts "Number of Bins: #{@nbins}"
-      puts "Absolute distribution"
+      puts "Absolute Distribution"
       @bin_hash.keys.sort.each do |k|
         puts "#{k} => #{@bin_hash[k].length}"
       end
