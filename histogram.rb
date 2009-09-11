@@ -79,6 +79,7 @@ module ConHist
 
     def print_console
       puts "Number of Bins: #{@nbins}"
+      puts "Sample size: #{@sample.size}"
       puts "Absolute Distribution"
       @bin_hash.keys.sort.each do |k|
         puts "#{k} => #{@bin_hash[k].length}"
